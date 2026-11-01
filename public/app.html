@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <strong>📦 Inventario</strong>
+    <span><span id="usuario" class="muted"></span> <button class="ghost" id="salir">Salir</button></span>
+  </header>
+  <main>
+    <section class="card">
+      <h2 id="formTitulo">Nuevo producto</h2>
+      <form id="form">
+        <div><label for="nombre">Nombre</label><input id="nombre" required></div>
+        <div><label for="descripcion">Descripción</label><input id="descripcion"></div>
+        <div><label for="precio">Precio</label><input id="precio" type="number" min="0" step="0.01" required></div>
+        <div><label for="stock">Stock</label><input id="stock" type="number" min="0" value="0"></div>
+        <button id="guardar">Agregar</button>
+      </form>
+      <p id="error" class="error" role="alert"></p>
+    </section>
+    <section class="card">
+      <h2>Productos</h2>
+      <table>
+        <thead><tr><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Stock</th><th></th></tr></thead>
+        <tbody id="lista"></tbody>
+      </table>
+      <p id="vacio" class="muted" hidden>No hay productos todavía.</p>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
