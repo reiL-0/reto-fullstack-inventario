@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: reto-fullstack-inventario
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false        # lo escribes tú en Render (cadena de Atlas)
+      - key: JWT_SECRET
+        generateValue: true # Render genera un secreto aleatorio
