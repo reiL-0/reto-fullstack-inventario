@@ -3,8 +3,8 @@
 Aplicación full stack: API REST con **Node.js + Express + MongoDB (Mongoose)**, autenticación **JWT** y frontend en **HTML, CSS y JavaScript** servido por el mismo servidor.
 
 ## Enlaces de entrega (completar)
-- Repositorio GitHub: `https://github.com/<usuario>/<repo>`
-- Despliegue en la nube: `https://<tu-app>.onrender.com`
+- Repositorio GitHub: https://github.com/reiL-0/reto-fullstack-inventario
+- Despliegue en la nube: https://reto-fullstack-inventario.onrender.com
 - Video demostrativo: `<enlace>`
 
 ## Estructura
