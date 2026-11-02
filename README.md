@@ -11,21 +11,33 @@ Aplicación full stack: API REST con **Node.js + Express + MongoDB (Mongoose)**,
 
 ```
 reto-fullstack/
-├── server.js                  # Arranque: Express, middlewares, rutas, conexión a MongoDB
-├── test.js                    # Prueba de humo de la API (npm test)
-├── .env.example               # Plantilla de variables de entorno
-├── src/
+├── package.json, .env.example, .gitignore, README.md
+├── backend/
+│   ├── server.js              # Arranque: Express, middlewares, rutas, conexión a MongoDB
+│   ├── test.js                # Prueba de la API (npm test)
 │   ├── models/                # User.js, Product.js (esquemas Mongoose)
-│   ├── routes/                # auth.js (registro/login), products.js (CRUD)
+│   ├── controllers/           # authController.js, productController.js (lógica)
+│   ├── routes/                # auth.js, products.js (URL -> middleware -> controlador)
 │   └── middleware/
 │       ├── auth.js            # Verifica JWT
 │       ├── validate.js        # Validación de campos
 │       └── error.js           # 404 + manejador central de errores (JSON { error })
-└── public/                    # Frontend
+└── frontend/                  # HTML/CSS/JS estático, servido por Express
     ├── index.html, js/login.js    # Login / registro
     ├── app.html,  js/app.js       # Listado + CRUD de productos
     └── css/style.css
 ```
+
+## Flujo del sistema
+
+1. El usuario abre `index.html` y se **registra** (`POST /api/auth/register`) o **inicia sesión** (`POST /api/auth/login`).
+2. El backend valida los datos, guarda/compara la contraseña con bcrypt y responde con un **token JWT**.
+3. El frontend guarda el token en `localStorage` y redirige a `app.html`.
+4. `app.js` pide la lista (`GET /api/products`, pública) y la dibuja en el DOM.
+5. Al agregar, editar o eliminar, `app.js` envía la petición con `Authorization: Bearer <token>`. El middleware `auth.js` verifica el token; si es válido, el controlador opera sobre MongoDB y la lista se recarga.
+6. Si el token falta o expiró (401), el frontend borra la sesión y vuelve al login. Cualquier error se devuelve como `{ "error": ... }` y se muestra en pantalla.
+
+Petición típica: `Ruta (routes) → middleware (auth/validate) → controlador → modelo (Mongoose) → MongoDB → respuesta JSON`.
 
 ## Ejecutar en local
 

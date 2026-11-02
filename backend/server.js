@@ -3,15 +3,15 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { notFound, errorHandler } = require('./src/middleware/error');
+const { notFound, errorHandler } = require('./middleware/error');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
-app.use('/api/auth', require('./src/routes/auth'));
-app.use('/api/products', require('./src/routes/products'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/products', require('./routes/products'));
 app.use('/api', notFound);
 app.use(errorHandler);
 
